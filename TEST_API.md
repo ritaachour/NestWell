@@ -71,11 +71,68 @@ curl -X POST "https://your-api.railway.app/assess" \
   "risk_level": "Moderate Risk",
   "confidence": "High",
   "assessment": "...",
-  "sources": [...],
+  "sources": [
+    {
+      "pmid": "12345678",
+      "title": "Safety assessment of parabens in cosmetics",
+      "journal": "Journal of Toxicology",
+      "year": "2023",
+      "quality_score": 85,
+      "is_clinical_trial": true,
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12345678"
+    },
+    ...
+  ],
   "papers_analyzed": 5,
   "avg_quality_score": 72.0
 }
 ```
+
+**To see the paper links:** Look in the `sources` array. Each source has a `url` field that links to PubMed.
+
+## Viewing Paper Links
+
+After you get an assessment, the response includes a `sources` array with links to all the papers used.
+
+### Example Response Structure:
+
+```json
+{
+  "sources": [
+    {
+      "pmid": "12345678",
+      "title": "Paper Title Here",
+      "journal": "Journal Name",
+      "year": "2023",
+      "quality_score": 85,
+      "is_clinical_trial": true,
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12345678"  ← Click this!
+    }
+  ]
+}
+```
+
+Each source object has a `url` field that links directly to PubMed.
+
+### In Your Browser:
+
+1. Get an assessment using `/assess` endpoint
+2. Look for the `sources` array in the response
+3. Click any `url` field to view that paper on PubMed
+
+### Example: Find All Papers
+
+```bash
+curl -X POST "https://your-api.railway.app/assess" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "substance": "parabens",
+    "product_type": "cosmetics",
+    "usage_frequency": "daily"
+  }' | jq '.sources[].url'
+```
+
+This will print all the PubMed URLs from the sources.
 
 ## Using Interactive Docs
 
