@@ -1,9 +1,7 @@
-fastapi==0.109.0
-uvicorn[standard]==0.27.0
-chromadb==0.4.22
-google-generativeai==0.3.1
-biopython==1.83
-python-dotenv==1.0.0
-pydantic==2.5.3
-python-multipart==0.0.6
-typing-extensions>=4.5.0
+fastapi
+uvicorn
+chromadb
+google-generativeai
+biopython
+python-dotenv
+python-multipart
