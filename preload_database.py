@@ -14,7 +14,7 @@ load_dotenv()
 # Import from main.py
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from main import (
-    query_pubmed, 
+    fetch_pubmed_papers, 
     calculate_quality_score,
     collection,
     chroma_client
@@ -73,7 +73,7 @@ def load_papers_for_compound(compound_name, search_query, max_results, descripti
     
     try:
         # Query PubMed
-        papers = query_pubmed(search_query, max_results=max_results)
+        papers = fetch_pubmed_papers(search_query, max_results)
         
         if not papers:
             print(f"❌ No papers found for {compound_name}")
@@ -93,22 +93,17 @@ def load_papers_for_compound(compound_name, search_query, max_results, descripti
                     print(f"⏭️  Paper {paper['pmid']} already exists, skipping")
                     continue
                 
-                # Calculate quality score
-                quality_score = calculate_quality_score(
-                    paper.get('publication_types', []),
-                    paper.get('pub_date', ''),
-                    len(paper.get('abstract', '')),
-                    paper.get('source', '')
-                )
+                # Quality score is already calculated in paper dict
+                quality_score = paper.get('quality_score', 0)
                 
                 # Create metadata
                 metadata = {
                     'pmid': paper['pmid'],
                     'title': paper['title'],
-                    'journal': paper.get('source', 'Unknown'),
-                    'year': paper.get('pub_date', '')[:4] if paper.get('pub_date') else 'Unknown',
+                    'journal': paper.get('journal', 'Unknown'),
+                    'year': paper.get('year', 'Unknown'),
                     'quality_score': quality_score,
-                    'is_clinical_trial': 'clinical trial' in ' '.join(paper.get('publication_types', [])).lower(),
+                    'is_clinical_trial': paper.get('is_clinical_trial', False),
                     'abstract': paper.get('abstract', 'No abstract available'),
                     'compound': compound_name,
                     'category': 'pregnancy' if compound_name in PREGNANCY_COMPOUNDS else 'planning'
