@@ -35,7 +35,32 @@ curl -X POST "https://your-api.railway.app/load-papers" \
 }
 ```
 
-### Step 3: Check Database Stats
+### Step 3: View All Loaded Papers
+
+```bash
+curl https://your-api.railway.app/papers
+```
+
+**Expected Response:**
+```json
+{
+  "papers": [
+    {
+      "pmid": "12345678",
+      "title": "Safety assessment of parabens in cosmetics",
+      "journal": "Journal of Toxicology",
+      "year": "2023",
+      "quality_score": 85,
+      "is_clinical_trial": true,
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12345678"
+    },
+    ...
+  ],
+  "total": 10
+}
+```
+
+### Step 4: Check Database Stats
 
 ```bash
 curl https://your-api.railway.app/stats
@@ -51,7 +76,7 @@ curl https://your-api.railway.app/stats
 }
 ```
 
-### Step 4: Get Assessment
+### Step 5: Get Assessment
 
 ```bash
 curl -X POST "https://your-api.railway.app/assess" \
@@ -133,6 +158,16 @@ curl -X POST "https://your-api.railway.app/assess" \
 ```
 
 This will print all the PubMed URLs from the sources.
+
+### Alternative: View All Loaded Papers
+
+You can also see all papers that were loaded (not just those used in assessment):
+
+```bash
+curl https://your-api.railway.app/papers
+```
+
+This shows ALL papers in the database with titles, journals, and links.
 
 ## Using Interactive Docs
 
