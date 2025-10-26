@@ -16,10 +16,10 @@ Your `railway.toml` file configures how Railway runs your app. Environment varia
 
 ```
 Name: GEMINI_API_KEY
-Value: AIzaSyDqi2ntfLK77TR1UuyyeHcAt6cLXGu0tUI
+Value: your-gemini-api-key-here
 
 Name: NCBI_EMAIL  
-Value: rita_achour@berkeley.edu
+Value: your@email.com
 ```
 
 6. Click "Add Variable" for each one
@@ -28,8 +28,8 @@ Value: rita_achour@berkeley.edu
 
 ```bash
 # Set variables from command line
-railway variables set GEMINI_API_KEY=AIzaSyDqi2ntfLK77TR1UuyyeHcAt6cLXGu0tUI
-railway variables set NCBI_EMAIL=rita_achour@berkeley.edu
+railway variables set GEMINI_API_KEY=your-key-here
+railway variables set NCBI_EMAIL=your@email.com
 ```
 
 ### Method 3: From Local .env File

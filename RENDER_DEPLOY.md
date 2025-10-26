@@ -30,7 +30,7 @@ Click "Environment" tab and add:
 
 ```
 GEMINI_API_KEY=your-key
-NCBI_EMAIL=rita_achour@berkeley.edu
+NCBI_EMAIL=your@email.com
 ```
 
 ### Step 5: Deploy
