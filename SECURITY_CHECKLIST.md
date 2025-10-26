@@ -47,7 +47,7 @@ NEXT_PUBLIC_API_URL=https://your-railway-app.railway.app
 **❌ NEVER do this in code:**
 ```typescript
 // ❌ BAD - hardcoded API key
-const API_KEY = "AIzaSyDqi2ntfLK77TR1UuyyeHcAt6cLXGu0tUI";
+const API_KEY = "AIza..."; // Never hardcode real keys
 
 // ✅ GOOD - use environment variable
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
@@ -197,7 +197,7 @@ NEXT_PUBLIC_API_URL=https://your-railway-app.railway.app
 // ❌ DON'T DO THIS
 const response = await fetch('https://api.railway.app/assess', {
   headers: {
-    'Authorization': 'Bearer AIzaSyDqi2ntfLK77TR1UuyyeHcAt6cLXGu0tUI'
+    'Authorization': 'Bearer YOUR_API_KEY_HERE'
   }
 });
 ```
